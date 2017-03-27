@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [olga verhovetchi](https://up.htmlacademy.ru/javascript/9/user/92596).
-* Наставник: `Неизвестно`.
+* Наставник: `Игорь Алексеенко`.
 
 ---
 
