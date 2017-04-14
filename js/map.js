@@ -4,7 +4,7 @@ var offerTitle = ['Большая уютная квартира', 'Малень�
 var flat = 'flat';
 var house = 'house';
 var bungalo = 'bungalo';
-var offerType = [flat, house, bungalo]; //Fixed
+var offerType = [flat, house, bungalo]; 
 var offerCheck = ['12:00', '13:00', '14:00'];
 var offerFeatures = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 var randomMaxandMin = function (min, max) {
@@ -13,62 +13,61 @@ var randomMaxandMin = function (min, max) {
 var infoUser = [];
 
 for (var i = 0; i < 8; i++) {
-  var locationCoordX = randomMaxandMin (300,900);
-  var locationCoordY = randomMaxandMin (100,500);
-  var featuresLength = randomMaxandMin (0, offerFeatures.length);
+  var locationCoordX = randomMaxandMin(300, 900);
+  var locationCoordY = randomMaxandMin(100, 500);
+  var featuresLength = randomMaxandMin(0, offerFeatures.length);
   var features = [];
   for (var y = 0; y < featuresLength; y++) {
-    features[y] =  offerFeatures[y];
+    features[y] = offerFeatures[y];
   }
-  
   var anounce = {
-    author : {
-      avatar:'img/avatars/user0'+(i+1)+'.png'
+    author: {
+      avatar: 'img/avatars/user0'+(i+1)+'.png'
     },
-    offer : {
+
+    offer: {
       title: offerTitle[i],
       address: locationCoordX + ','+locationCoordY,
-      price: randomMaxandMin (1000, 1000000),
-      type: offerType[randomMaxandMin(0,offerType.length)],
-      rooms: randomMaxandMin (1,5),
-      guests: randomMaxandMin (1,10),
-      checkin: offerCheck[randomMaxandMin(0,offerCheck.length)],
-      checkout: offerCheck[randomMaxandMin(0,offerCheck.length)],
+      price: randomMaxandMin(1000, 1000000),
+      type: offerType[randomMaxandMin(0, offerType.length)],
+      rooms: randomMaxandMin (1, 5),
+      guests: randomMaxandMin (1, 10),
+      checkin: offerCheck[randomMaxandMin(0, offerCheck.length)],
+      checkout: offerCheck[randomMaxandMin(0, offerCheck.length)],
       features: features,
       description: '',
-      photos:[]
+      photos: [],  
     },
+
     location: {
       x: locationCoordX,
       y: locationCoordY,
     }
+
   };
 
   infoUser.push(anounce);
 
 }
 
-var fragment = document.createDocumentFragment();
+var fragment = document.createDocumentFragment ();
 
 for (var j = 0; j< infoUser.length; j++){
   var similarNotice = document.createElement('div');
-  var anounce = infoUser[j]
-  var PIN_WIDTH = 10;
-  var PIN_HEIGHT = 0;
+  var notice = infoUser[j];
+  
+  similarNotice.className = 'pin';
+  similarNotice.style.left = notice.location.x + 'px';
+  similarNotice.style.top = notice.location.y + 'px';
 
-   similarNotice.className = 'pin';
-   similarNotice.style.left = anounce.location.x  +'px';
-   similarNotice.style.top = anounce.location.y  + 'px';
+  var image = document.createElement('img');
+  image.src = anounce.author.avatar;
+  image.className = 'rounded';
+  image.width = 40;
+  image.height = 40;
+  similarNotice.appendChild(image);
 
-   var image = document.createElement('img');
-   image.src = anounce.author.avatar;
-   image.className ='rounded';
-   image.width = 40;
-   image.height = 40;
-   
-   similarNotice.appendChild(image);
-
-   fragment.appendChild(similarNotice);
+  fragment.appendChild(similarNotice);
 }
 
 document.querySelector('.tokyo__pin-map').appendChild(fragment);
@@ -84,11 +83,11 @@ var similarLodgeTemplate = document.querySelector('#lodge-template').content;
   lodgeElement.querySelector('.lodge__price').textContent = firstUser.offer.price +' ₽/ночь';
   
   var translatedoffertype = '';
-  if (firstUser.offer.type == flat){
+  if (firstUser.offer.type === flat) {
     translatedoffertype = 'Квартира';
-  } else if(firstUser.offer.type == house){
+  } else if(firstUser.offer.type === house) {
     translatedoffertype = 'Дом';
-  } else if(firstUser.offer.type == bungalo){
+  } else if(firstUser.offer.type === bungalo) {
     translatedoffertype = 'Бунгало';
   };
   lodgeElement.querySelector('.lodge__type').textContent = translatedoffertype;
@@ -107,29 +106,5 @@ var similarLodgeTemplate = document.querySelector('#lodge-template').content;
   document.querySelector('.dialog__panel').replaceWith(lodgeElement);
   
   document.querySelector('#offer-dialog .dialog__title img').src = firstUser.author.avatar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-
-
     
