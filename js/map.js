@@ -87,7 +87,7 @@ if (firstUser.offer.type === flat) {
   translatedoffertype = 'Дом';
 } else if (firstUser.offer.type === bungalo) {
   translatedoffertype = 'Бунгало';
-  }
+}
 lodgeElement.querySelector('.lodge__type').textContent = translatedoffertype;
 lodgeElement.querySelector('.lodge__rooms-and-guests').textContent = 'Для ' + firstUser.offer.guests + ' гостей в ' + firstUser.offer.rooms + ' комнатах';
 lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + firstUser.offer.checkin + ',' + ' выезд до' + firstUser.offer.checkout;
