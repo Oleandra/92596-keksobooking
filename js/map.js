@@ -4,7 +4,7 @@ var offerTitle = ['Большая уютная квартира', 'Малень�
 var flat = 'flat';
 var house = 'house';
 var bungalo = 'bungalo';
-var offerType = [flat, house, bungalo]; 
+var offerType = [flat, house, bungalo];
 var offerCheck = ['12:00', '13:00', '14:00'];
 var offerFeatures = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 var randomMaxandMin = function (min, max) {
@@ -82,15 +82,15 @@ lodgeElement.querySelector('.lodge__address').textContent = firstUser.offer.addr
 lodgeElement.querySelector('.lodge__price').textContent = firstUser.offer.price + ' ₽/ночь';
 var translatedoffertype = '';
 if (firstUser.offer.type === flat) {
-    translatedoffertype = 'Квартира';
-  } else if(firstUser.offer.type === house) {
-    translatedoffertype = 'Дом';
-  } else if(firstUser.offer.type === bungalo) {
-    translatedoffertype = 'Бунгало';
-};
+  translatedoffertype = 'Квартира';
+} else if (firstUser.offer.type === house) {
+  translatedoffertype = 'Дом';
+} else if (firstUser.offer.type === bungalo) {
+  translatedoffertype = 'Бунгало';
+  }
 lodgeElement.querySelector('.lodge__type').textContent = translatedoffertype;
 lodgeElement.querySelector('.lodge__rooms-and-guests').textContent = 'Для ' + firstUser.offer.guests + ' гостей в ' + firstUser.offer.rooms + ' комнатах';
-lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + firstUser.offer.checkin +',' + ' выезд до' + firstUser.offer.checkout;
+lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + firstUser.offer.checkin + ',' + ' выезд до' + firstUser.offer.checkout;
 var offerFeaturesElement = lodgeElement.querySelector('.lodge__features');
 firstUser.offer.features.forEach(function (item) {
   var featureElement = document.createElement('span');
@@ -100,7 +100,5 @@ firstUser.offer.features.forEach(function (item) {
   offerFeaturesElement.appendChild(featureElement);
 });
 lodgeElement.querySelector('.lodge__description').textContent = firstUser.offer.description;
-  
 document.querySelector('.dialog__panel').replaceWith(lodgeElement);
-  
 document.querySelector('#offer-dialog .dialog__title img').src = firstUser.author.avatar;
