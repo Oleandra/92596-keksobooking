@@ -22,21 +22,21 @@ for (var i = 0; i < 8; i++) {
   }
   var anounce = {
     author: {
-      avatar: 'img/avatars/user0'+(i+1)+'.png'
+      avatar: 'img/avatars/user0' + (i + 1) + '.png'
     },
 
     offer: {
       title: offerTitle[i],
-      address: locationCoordX + ','+locationCoordY,
+      address: locationCoordX + ',' + locationCoordY,
       price: randomMaxandMin(1000, 1000000),
       type: offerType[randomMaxandMin(0, offerType.length)],
-      rooms: randomMaxandMin (1, 5),
-      guests: randomMaxandMin (1, 10),
+      rooms: randomMaxandMin(1, 5),
+      guests: randomMaxandMin(1, 10),
       checkin: offerCheck[randomMaxandMin(0, offerCheck.length)],
       checkout: offerCheck[randomMaxandMin(0, offerCheck.length)],
       features: features,
       description: '',
-      photos: [],  
+      photos: [],
     },
 
     location: {
@@ -50,12 +50,11 @@ for (var i = 0; i < 8; i++) {
 
 }
 
-var fragment = document.createDocumentFragment ();
+var fragment = document.createDocumentFragment();
 
-for (var j = 0; j< infoUser.length; j++){
+for (var j = 0; j < infoUser.length; j++) {
   var similarNotice = document.createElement('div');
   var notice = infoUser[j];
-  
   similarNotice.className = 'pin';
   similarNotice.style.left = notice.location.x + 'px';
   similarNotice.style.top = notice.location.y + 'px';
@@ -74,37 +73,34 @@ document.querySelector('.tokyo__pin-map').appendChild(fragment);
 
 var similarLodgeTemplate = document.querySelector('#lodge-template').content;
 
-  var lodgeElement = similarLodgeTemplate.cloneNode(true);
+var lodgeElement = similarLodgeTemplate.cloneNode(true);
 
-  var firstUser = infoUser[0];
+var firstUser = infoUser[0];
 
-  lodgeElement.querySelector('.lodge__title').textContent = firstUser.offer.title;
-  lodgeElement.querySelector('.lodge__address').textContent = firstUser.offer.address;
-  lodgeElement.querySelector('.lodge__price').textContent = firstUser.offer.price +' ₽/ночь';
-  
-  var translatedoffertype = '';
-  if (firstUser.offer.type === flat) {
+lodgeElement.querySelector('.lodge__title').textContent = firstUser.offer.title;
+lodgeElement.querySelector('.lodge__address').textContent = firstUser.offer.address;
+lodgeElement.querySelector('.lodge__price').textContent = firstUser.offer.price + ' ₽/ночь';
+var translatedoffertype = '';
+if (firstUser.offer.type === flat) {
     translatedoffertype = 'Квартира';
   } else if(firstUser.offer.type === house) {
     translatedoffertype = 'Дом';
   } else if(firstUser.offer.type === bungalo) {
     translatedoffertype = 'Бунгало';
-  };
-  lodgeElement.querySelector('.lodge__type').textContent = translatedoffertype;
-  lodgeElement.querySelector('.lodge__rooms-and-guests').textContent = 'Для ' + firstUser.offer.guests + ' гостей в ' + firstUser.offer.rooms + ' комнатах';
-  lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + firstUser.offer.checkin +',' + ' выезд до' + firstUser.offer.checkout;
-  var offerFeaturesElement = lodgeElement.querySelector('.lodge__features');
-    firstUser.offer.features.forEach(function (item) {
-      var featureElement = document.createElement('span');
+};
+lodgeElement.querySelector('.lodge__type').textContent = translatedoffertype;
+lodgeElement.querySelector('.lodge__rooms-and-guests').textContent = 'Для ' + firstUser.offer.guests + ' гостей в ' + firstUser.offer.rooms + ' комнатах';
+lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + firstUser.offer.checkin +',' + ' выезд до' + firstUser.offer.checkout;
+var offerFeaturesElement = lodgeElement.querySelector('.lodge__features');
+firstUser.offer.features.forEach(function (item) {
+  var featureElement = document.createElement('span');
 
-      featureElement.classList.add('feature__image');
-      featureElement.classList.add('feature__image--' + item);
-      offerFeaturesElement.appendChild(featureElement);
-    });
-  lodgeElement.querySelector('.lodge__description').textContent = firstUser.offer.description;
+  featureElement.classList.add('feature__image');
+  featureElement.classList.add('feature__image--' + item);
+  offerFeaturesElement.appendChild(featureElement);
+});
+lodgeElement.querySelector('.lodge__description').textContent = firstUser.offer.description;
   
-  document.querySelector('.dialog__panel').replaceWith(lodgeElement);
+document.querySelector('.dialog__panel').replaceWith(lodgeElement);
   
-  document.querySelector('#offer-dialog .dialog__title img').src = firstUser.author.avatar;
-  
-    
+document.querySelector('#offer-dialog .dialog__title img').src = firstUser.author.avatar;
