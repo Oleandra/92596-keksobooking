@@ -75,7 +75,7 @@ document.querySelector('.tokyo__pin-map').appendChild(fragment);
 
 var similarLodgeTemplate = document.querySelector('#lodge-template').content;
 
-var populateDialog = function (user){
+var populateDialog = function (user) {
   var lodgeElement = similarLodgeTemplate.cloneNode(true);
   lodgeElement.querySelector('.lodge__title').textContent = user.offer.title;
   lodgeElement.querySelector('.lodge__address').textContent = user.offer.address;
@@ -129,40 +129,34 @@ var pinOnClick = function (content) {
 
     this.addEventListener('keydown', function (evt) {
       if (evt.keyCode === 13) {
-         populateDialog(infoUser[currentUserIndex]);
+          populateDialog(infoUser[currentUserIndex]);
       }
     });
-    
     // Когда диалог открыт, то клавиша ESC должна закрывать диалог и деактивировать элемент .pin, который был помечен как активный
     document.addEventListener('keydown', function (evt) {
       if (evt.keyCode === 27) {
-       closeDialog();
+        closeDialog();
       }
     });
 
     // Если диалог открыт и фокус находится на крестике, то нажатие клавиши ENTER приводит к закрытию диалога и деактивации элемента .pin, который был помечен как активный
     dialogClose.addEventListener('keydown', function (evt) {
-          if (evt.keyCode === 27) {
-           closeDialog();
+      if (evt.keyCode === 27) {
+            closeDialog();
           }
     });
 
   }
-}
+};
 
-var closeDialog = function() {
+var closeDialog = function () {
   removeActiveClass();
   dialog.classList.add('hidden');
 };
 
 
-dialogClose.addEventListener("click", closeDialog);
+dialogClose.addEventListener('click', closeDialog);
 
-
-
-pinElements.forEach(function(content, item) {
-      content.addEventListener("click", pinOnClick);
+pinElements.forEach(function (content, item) {
+  content.addEventListener('click', pinOnClick);
 });
-
-
-
