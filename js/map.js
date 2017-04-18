@@ -57,7 +57,7 @@ for (var j = 0; j < infoUser.length; j++) {
   var notice = infoUser[j];
   similarNotice.className = 'pin';
   similarNotice.dataset.index = j;
-  similarNotice.tabindex=0;
+  similarNotice.tabindex = 0;
   similarNotice.style.left = notice.location.x + 'px';
   similarNotice.style.top = notice.location.y + 'px';
 
