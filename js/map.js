@@ -56,11 +56,13 @@ for (var j = 0; j < infoUser.length; j++) {
   var similarNotice = document.createElement('div');
   var notice = infoUser[j];
   similarNotice.className = 'pin';
+  similarNotice.dataset.index = j;
+  similarNotice.tabindex = 0;
   similarNotice.style.left = notice.location.x + 'px';
   similarNotice.style.top = notice.location.y + 'px';
 
   var image = document.createElement('img');
-  image.src = anounce.author.avatar;
+  image.src = notice.author.avatar;
   image.className = 'rounded';
   image.width = 40;
   image.height = 40;
@@ -73,32 +75,90 @@ document.querySelector('.tokyo__pin-map').appendChild(fragment);
 
 var similarLodgeTemplate = document.querySelector('#lodge-template').content;
 
-var lodgeElement = similarLodgeTemplate.cloneNode(true);
+var populateDialog = function (user) {
+  var lodgeElement = similarLodgeTemplate.cloneNode(true);
+  lodgeElement.querySelector('.lodge__title').textContent = user.offer.title;
+  lodgeElement.querySelector('.lodge__address').textContent = user.offer.address;
+  lodgeElement.querySelector('.lodge__price').textContent = user.offer.price + ' ₽/ночь';
+  var translatedoffertype = '';
+  if (user.offer.type === flat) {
+    translatedoffertype = 'Квартира';
+  } else if (user.offer.type === house) {
+    translatedoffertype = 'Дом';
+  } else if (user.offer.type === bungalo) {
+    translatedoffertype = 'Бунгало';
+  }
+  lodgeElement.querySelector('.lodge__type').textContent = translatedoffertype;
+  lodgeElement.querySelector('.lodge__rooms-and-guests').textContent = 'Для ' + user.offer.guests + ' гостей в ' + user.offer.rooms + ' комнатах';
+  lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + user.offer.checkin + ',' + ' выезд до' + user.offer.checkout;
+  var offerFeaturesElement = lodgeElement.querySelector('.lodge__features');
+  user.offer.features.forEach(function (item) {
+    var featureElement = document.createElement('span');
 
-var firstUser = infoUser[0];
+    featureElement.classList.add('feature__image');
+    featureElement.classList.add('feature__image--' + item);
+    offerFeaturesElement.appendChild(featureElement);
+  });
+  lodgeElement.querySelector('.lodge__description').textContent = user.offer.description;
+  document.querySelector('.dialog__panel').replaceWith(lodgeElement);
+  document.querySelector('#offer-dialog .dialog__title img').src = user.author.avatar;
 
-lodgeElement.querySelector('.lodge__title').textContent = firstUser.offer.title;
-lodgeElement.querySelector('.lodge__address').textContent = firstUser.offer.address;
-lodgeElement.querySelector('.lodge__price').textContent = firstUser.offer.price + ' ₽/ночь';
-var translatedoffertype = '';
-if (firstUser.offer.type === flat) {
-  translatedoffertype = 'Квартира';
-} else if (firstUser.offer.type === house) {
-  translatedoffertype = 'Дом';
-} else if (firstUser.offer.type === bungalo) {
-  translatedoffertype = 'Бунгало';
-}
-lodgeElement.querySelector('.lodge__type').textContent = translatedoffertype;
-lodgeElement.querySelector('.lodge__rooms-and-guests').textContent = 'Для ' + firstUser.offer.guests + ' гостей в ' + firstUser.offer.rooms + ' комнатах';
-lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + firstUser.offer.checkin + ',' + ' выезд до' + firstUser.offer.checkout;
-var offerFeaturesElement = lodgeElement.querySelector('.lodge__features');
-firstUser.offer.features.forEach(function (item) {
-  var featureElement = document.createElement('span');
+};
 
-  featureElement.classList.add('feature__image');
-  featureElement.classList.add('feature__image--' + item);
-  offerFeaturesElement.appendChild(featureElement);
+populateDialog(infoUser[0]);
+
+// module4-task1
+var dialog = document.querySelector('.dialog');
+var dialogClose = document.querySelector('.dialog__close');
+var pinElements = document.querySelectorAll('.pin');
+
+var removeActiveClass = function () {
+  document.querySelectorAll('.pin').forEach(function (content, item) {
+    content.classList.remove('pin--active');
+  });
+};
+
+var pinOnClick = function (content) {
+  removeActiveClass();
+  dialog.classList.remove('hidden');
+  content.classList.add('pin--active');
+
+  var currentUserIndex = content.dataset.index;
+  if (currentUserIndex) {
+    populateDialog(infoUser[currentUserIndex]);
+
+    content.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === 13) {
+        populateDialog(infoUser[currentUserIndex]);
+      }
+    });
+    // Когда диалог открыт, то клавиша ESC должна закрывать диалог и деактивировать элемент .pin, который был помечен как активный
+    document.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === 27) {
+        closeDialog();
+      }
+    });
+
+    // Если диалог открыт и фокус находится на крестике, то нажатие клавиши ENTER приводит к закрытию диалога и деактивации элемента .pin, который был помечен как активный
+    dialogClose.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === 27) {
+        closeDialog();
+      }
+    });
+
+  }
+};
+
+var closeDialog = function () {
+  removeActiveClass();
+  dialog.classList.add('hidden');
+};
+
+
+dialogClose.addEventListener('click', closeDialog);
+
+pinElements.forEach(function (content, item) {
+  content.addEventListener('click', function () {
+    pinOnClick(content);
+  });
 });
-lodgeElement.querySelector('.lodge__description').textContent = firstUser.offer.description;
-document.querySelector('.dialog__panel').replaceWith(lodgeElement);
-document.querySelector('#offer-dialog .dialog__title img').src = firstUser.author.avatar;
