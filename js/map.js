@@ -158,7 +158,7 @@ var closeDialog = function () {
 dialogClose.addEventListener('click', closeDialog);
 
 pinElements.forEach(function (content, item) {
-  content.addEventListener('click', function(){
+  content.addEventListener('click', function () {
     pinOnClick(content);
   });
 });
