@@ -121,15 +121,15 @@ var removeActiveClass = function () {
 var pinOnClick = function (content) {
   removeActiveClass();
   dialog.classList.remove('hidden');
-  this.classList.add('pin--active');
+  content.classList.add('pin--active');
 
-  var currentUserIndex = this.dataset.index;
+  var currentUserIndex = content.dataset.index;
   if (currentUserIndex) {
     populateDialog(infoUser[currentUserIndex]);
 
-    this.addEventListener('keydown', function (evt) {
+    content.addEventListener('keydown', function (evt) {
       if (evt.keyCode === 13) {
-          populateDialog(infoUser[currentUserIndex]);
+        populateDialog(infoUser[currentUserIndex]);
       }
     });
     // Когда диалог открыт, то клавиша ESC должна закрывать диалог и деактивировать элемент .pin, который был помечен как активный
@@ -142,8 +142,8 @@ var pinOnClick = function (content) {
     // Если диалог открыт и фокус находится на крестике, то нажатие клавиши ENTER приводит к закрытию диалога и деактивации элемента .pin, который был помечен как активный
     dialogClose.addEventListener('keydown', function (evt) {
       if (evt.keyCode === 27) {
-            closeDialog();
-          }
+        closeDialog();
+      }
     });
 
   }
@@ -158,5 +158,7 @@ var closeDialog = function () {
 dialogClose.addEventListener('click', closeDialog);
 
 pinElements.forEach(function (content, item) {
-  content.addEventListener('click', pinOnClick);
+  content.addEventListener('click', function(){
+    pinOnClick(content);
+  });
 });
