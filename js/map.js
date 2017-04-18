@@ -75,7 +75,7 @@ document.querySelector('.tokyo__pin-map').appendChild(fragment);
 
 var similarLodgeTemplate = document.querySelector('#lodge-template').content;
 
-var populateDialog = function(user){
+var populateDialog = function (user){
   var lodgeElement = similarLodgeTemplate.cloneNode(true);
   lodgeElement.querySelector('.lodge__title').textContent = user.offer.title;
   lodgeElement.querySelector('.lodge__address').textContent = user.offer.address;
@@ -103,45 +103,44 @@ var populateDialog = function(user){
   document.querySelector('.dialog__panel').replaceWith(lodgeElement);
   document.querySelector('#offer-dialog .dialog__title img').src = user.author.avatar;
 
-}
+};
 
 populateDialog(infoUser[0]);
 
-//module4-task1
+// module4-task1
 var dialog = document.querySelector('.dialog');
 var dialogClose = document.querySelector('.dialog__close');
 var pinElements = document.querySelectorAll('.pin');
 
-var removeActiveClass = function(){
-  document.querySelectorAll('.pin').forEach(function(content, item){
-    content.classList.remove('pin--active')
+var removeActiveClass = function () {
+  document.querySelectorAll('.pin').forEach(function (content, item) {
+    content.classList.remove('pin--active');
   });
-}
+};
 
-var pinOnClick = function(content, item){
+var pinOnClick = function (content) {
   removeActiveClass();
   dialog.classList.remove('hidden');
   this.classList.add('pin--active');
 
   var currentUserIndex = this.dataset.index;
-  if (currentUserIndex){
-     populateDialog(infoUser[currentUserIndex]);
+  if (currentUserIndex) {
+    populateDialog(infoUser[currentUserIndex]);
 
-     this.addEventListener('keydown', function (evt) {
-      console.log("kalsdkj", evt.keyCode)
+    this.addEventListener('keydown', function (evt) {
       if (evt.keyCode === 13) {
-        populateDialog(infoUser[currentUserIndex]);
+         populateDialog(infoUser[currentUserIndex]);
       }
     });
     
-    //Когда диалог открыт, то клавиша ESC должна закрывать диалог и деактивировать элемент .pin, который был помечен как активный
+    // Когда диалог открыт, то клавиша ESC должна закрывать диалог и деактивировать элемент .pin, который был помечен как активный
     document.addEventListener('keydown', function (evt) {
       if (evt.keyCode === 27) {
        closeDialog();
       }
     });
 
-    //Если диалог открыт и фокус находится на крестике, то нажатие клавиши ENTER приводит к закрытию диалога и деактивации элемента .pin, который был помечен как активный
+    // Если диалог открыт и фокус находится на крестике, то нажатие клавиши ENTER приводит к закрытию диалога и деактивации элемента .pin, который был помечен как активный
     dialogClose.addEventListener('keydown', function (evt) {
           if (evt.keyCode === 27) {
            closeDialog();
