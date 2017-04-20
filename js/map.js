@@ -205,5 +205,4 @@ formPrice.required = true;
 formPrice.type = 'number';
 formPrice.min = 1000;
 formPrice.max = 1000000;
-
-formAddress.required = true; 
+formAddress.required = true;
