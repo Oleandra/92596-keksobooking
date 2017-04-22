@@ -1,6 +1,6 @@
 'use strict';
 
-window.createData = (function() {
+window.createData = (function () {
 
   var offerTitle = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
   var flat = 'flat';
@@ -9,17 +9,17 @@ window.createData = (function() {
   var offerType = [flat, house, bungalo];
   var offerCheck = ['12:00', '13:00', '14:00'];
   var offerFeatures = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-  var randomMaxandMin = function(min, max) {
+  var randomMaxandMin = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   var infoUser = [];
 
-  for(var i = 0; i < 8; i++) {
+  for (var i = 0; i < 8; i++) {
     var locationCoordX = randomMaxandMin(300, 900);
     var locationCoordY = randomMaxandMin(100, 500);
     var featuresLength = randomMaxandMin(0, offerFeatures.length);
     var features = [];
-    for(var y = 0; y < featuresLength; y++) {
+    for (var y = 0; y < featuresLength; y++) {
       features[y] = offerFeatures[y];
     }
     var anounce = {

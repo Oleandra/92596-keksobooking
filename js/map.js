@@ -1,6 +1,6 @@
 'use strict';
 
-window.manipulatePin = (function() {
+window.manipulatePin = (function () {
 
   window.showCard.populateDialog(window.createData.user[0]);
 
@@ -9,36 +9,36 @@ window.manipulatePin = (function() {
   var dialogClose = document.querySelector('.dialog__close');
   var pinElements = document.querySelectorAll('.pin');
 
-  var removeActiveClass = function() {
-    document.querySelectorAll('.pin').forEach(function(content, item) {
+  var removeActiveClass = function () {
+    document.querySelectorAll('.pin').forEach(function (content, item) {
       content.classList.remove('pin--active');
     });
   };
 
-  var pinOnClick = function(content) {
+  var pinOnClick = function (content) {
     removeActiveClass();
     dialog.classList.remove('hidden');
     content.classList.add('pin--active');
 
     var currentUserIndex = content.dataset.index;
-    if(currentUserIndex) {
+    if (currentUserIndex) {
       window.showCard.populateDialog(window.createData.user[currentUserIndex]);
 
-      content.addEventListener('keydown', function(evt) {
-        if(evt.keyCode === 13) {
+      content.addEventListener('keydown', function (evt) {
+        if (evt.keyCode === 13) {
           window.showCard.populateDialog(window.createData.user[currentUserIndex]);
         }
       });
       // Когда диалог открыт, то клавиша ESC должна закрывать диалог и деактивировать элемент .pin, который был помечен как активный
-      document.addEventListener('keydown', function(evt) {
-        if(evt.keyCode === 27) {
+      document.addEventListener('keydown', function (evt) {
+        if (evt.keyCode === 27) {
           closeDialog();
         }
       });
 
       // Если диалог открыт и фокус находится на крестике, то нажатие клавиши ENTER приводит к закрытию диалога и деактивации элемента .pin, который был помечен как активный
-      dialogClose.addEventListener('keydown', function(evt) {
-        if(evt.keyCode === 27) {
+      dialogClose.addEventListener('keydown', function (evt) {
+        if (evt.keyCode === 27) {
           closeDialog();
         }
       });
@@ -46,7 +46,7 @@ window.manipulatePin = (function() {
     }
   };
 
-  var closeDialog = function() {
+  var closeDialog = function () {
     removeActiveClass();
     dialog.classList.add('hidden');
   };
@@ -54,8 +54,8 @@ window.manipulatePin = (function() {
 
   dialogClose.addEventListener('click', closeDialog);
 
-  pinElements.forEach(function(content, item) {
-    content.addEventListener('click', function() {
+  pinElements.forEach(function (content, item) {
+    content.addEventListener ('click', function() {
       pinOnClick(content);
     });
   });
