@@ -23,4 +23,4 @@ window.initilizePin = (function () {
   }
 
   document.querySelector('.tokyo__pin-map').appendChild(fragment);
-)}();
+})();
