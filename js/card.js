@@ -21,11 +21,11 @@ window.showCard = (function () {
     lodgeElement.querySelector('.lodge__checkin-time').textContent = 'Заезд после ' + user.offer.checkin + ',' + ' выезд до' + user.offer.checkout;
     var offerFeaturesElement = lodgeElement.querySelector('.lodge__features');
     user.offer.features.forEach(function (item) {
-    var featureElement = document.createElement('span');
+      var featureElement = document.createElement('span');
 
-    featureElement.classList.add('feature__image');
-    featureElement.classList.add('feature__image--' + item);
-    offerFeaturesElement.appendChild(featureElement);
+      featureElement.classList.add('feature__image');
+      featureElement.classList.add('feature__image--' + item);
+      offerFeaturesElement.appendChild(featureElement);
     });
     lodgeElement.querySelector('.lodge__description').textContent = user.offer.description;
     document.querySelector('.dialog__panel').replaceWith(lodgeElement);
