@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 window.initilizePin = (function () {
 var fragment = document.createDocumentFragment();

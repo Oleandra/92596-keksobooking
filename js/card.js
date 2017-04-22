@@ -1,10 +1,9 @@
-'use strict'
+'use strict';
 
 window.showCard = (function () {
-  
-var similarLodgeTemplate = document.querySelector('#lodge-template').content;
+  var similarLodgeTemplate = document.querySelector('#lodge-template').content;
 
-var populateDialog = function (user) {
+  var populateDialog = function (user) {
   var lodgeElement = similarLodgeTemplate.cloneNode(true);
   lodgeElement.querySelector('.lodge__title').textContent = user.offer.title;
   lodgeElement.querySelector('.lodge__address').textContent = user.offer.address;
@@ -35,7 +34,7 @@ var populateDialog = function (user) {
 };
 
 
-return{
+return {
   populateDialog: populateDialog
-}
+};
 })();

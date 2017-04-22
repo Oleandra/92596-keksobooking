@@ -1,21 +1,19 @@
-'use strict'
+'use strict';
 
-window.manipulatePin = (function() {
+window.manipulatePin = (function () {
 
-
-
-window.showCard.populateDialog(window.createData.user[0]);
+    window.showCard.populateDialog(window.createData.user[0]);
 
    
-var dialog = document.querySelector('.dialog');
-var dialogClose = document.querySelector('.dialog__close');
-var pinElements = document.querySelectorAll('.pin');
+    var dialog = document.querySelector('.dialog');
+    var dialogClose = document.querySelector('.dialog__close');
+    var pinElements = document.querySelectorAll('.pin');
 
-var removeActiveClass = function () {
-  document.querySelectorAll('.pin').forEach(function (content, item) {
-    content.classList.remove('pin--active');
-  });
-};
+    var removeActiveClass = function () {
+        document.querySelectorAll('.pin').forEach(function (content, item) {
+        content.classList.remove('pin--active');
+        });
+    };
 
 var pinOnClick = function (content) {
   removeActiveClass();
