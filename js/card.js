@@ -4,12 +4,12 @@ window.showCard = (function () {
   var similarLodgeTemplate = document.querySelector('#lodge-template').content;
 
   var populateDialog = function (user) {
-  var lodgeElement = similarLodgeTemplate.cloneNode(true);
-  lodgeElement.querySelector('.lodge__title').textContent = user.offer.title;
-  lodgeElement.querySelector('.lodge__address').textContent = user.offer.address;
-  lodgeElement.querySelector('.lodge__price').textContent = user.offer.price + ' ₽/ночь';
-  var translatedoffertype = '';
-  if (user.offer.type === 'flat') {
+    var lodgeElement = similarLodgeTemplate.cloneNode(true);
+    lodgeElement.querySelector('.lodge__title').textContent = user.offer.title;
+    lodgeElement.querySelector('.lodge__address').textContent = user.offer.address;
+    lodgeElement.querySelector('.lodge__price').textContent = user.offer.price + ' ₽/ночь';
+    var translatedoffertype = '';
+    if (user.offer.type === 'flat') {
     translatedoffertype = 'Квартира';
   } else if (user.offer.type === 'house') {
     translatedoffertype = 'Дом';
