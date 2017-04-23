@@ -11,7 +11,6 @@ window.initializeForm = (function () {
   var formCapacity = noticeForm.querySelector('#capacity');
   var formTitle = noticeForm.querySelector('#title');
   var formAddress = noticeForm.querySelector('#address');
-  
 
   window.synchronizeFields(formTime, formTimeout, ['12', '13', '14'], ['12', '13', '14'], function (val) {
     formTimeout.value = val;
