@@ -11,13 +11,7 @@ window.initializeForm = (function () {
   var formCapacity = noticeForm.querySelector('#capacity');
   var formTitle = noticeForm.querySelector('#title');
   var formAddress = noticeForm.querySelector('#address');
-  // синхронизация полей формы
-  window.synchronizeFields = (function (syncDomElem, syncDomElem2, arrValueSync, arrValueSync2, cb) {
-    syncDomElem.addEventListener('change', function () {
-      var selectedVal = arrValueSync.indexOf(syncDomElem.value);
-      cb(arrValueSync2[selectedVal]);
-    });
-  });
+  
 
   window.synchronizeFields(formTime, formTimeout, ['12', '13', '14'], ['12', '13', '14'], function (val) {
     formTimeout.value = val;
@@ -41,7 +35,7 @@ window.initializeForm = (function () {
 
   formPrice.required = true;
   formPrice.type = 'number';
-  formPrice.min = 1000;
+  // formPrice.min = 1000;
   formPrice.max = 1000000;
   formAddress.required = true;
 
