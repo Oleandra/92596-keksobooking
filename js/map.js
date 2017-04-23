@@ -60,51 +60,46 @@ window.manipulatePin = (function () {
     });
   });
 
-
-
   //draggable elements
-var pinHandle = document.querySelector('.pin__main');
-var address = document.querySelector('#address');
+    var pinHandle = document.querySelector('.pin__main');
+    var address = document.querySelector('#address');
 
 
-var getPinCoords = function (pin) {
+    var getPinCoords = function(pin) {
         var pinWidth = 44;
         var pinHeigth = 40;
-        return{
-        x: pin.offsetLeft  + pinWidth / 2,
+        return {
+        x: pin.offsetLeft + pinWidth / 2,
         y: pin.offsetTop + pinHeigth - 4
         };
     };
 
-pinHandle.addEventListener('mousedown', function (evt){
-    evt.preventDefault (); 
-    return getPinCoords;
-    
-});
+    pinHandle.addEventListener('mousedown', function(evt) {
+        evt.preventDefault();
+        return getPinCoords;
 
+    });
 
+    var getFormattedCoords = function(pin) {
+        return 'x:' + Math.round(getPinCoords(pin).x) + '' + ' y:' + Math.round(getPinCoords(pin).y);
+    };
 
-var getFormattedCoords = function (pin) {
-    return 'x:' + Math.round(getPinCoords(pin).x) + '' + ' y:' + Math.round(getPinCoords(pin).y);
-};
+    address.readOnly = true;
+    address.value = getFormattedCoords(pinHandle);
 
-address.readOnly = true;
-address.value = getFormattedCoords(pinHandle);
+    var onMouseEnter = function(enterEvt) {
+        enterEvt.preventDefault();
+        return getFormattedCoords;
+        address.value = getFormattedCoords(pin);
+    };
 
-var onMouseEnter = function (enterEvt) {
-    enterEvt.preventDefault ();
-    return getFormattedCoords;
-    address.value = getFormattedCoords(pin);
-};
+    pinHandle.addEventListener('mouseenter', onMouseEnter);
 
-pinHandle.addEventListener('mouseenter', onMouseEnter);
+    var onMouseUp = function(upEvt) {
+        upEvt.preventDefault();
+        document.removeEventListener('mouseenter', onMouseEnter);
+        document.removeEventListener('mouseup', onMouseUp);
+    };
 
-var onMouseUp = function (upEvt) {
-    upEvt.preventDefault ();
-document.removeEventListener('mouseenter', onMouseEnter);
-document.removeEventListener('mouseup', onMouseUp);
-};
-
-pinHandle.addEventListener('mouseup', onMouseUp);
-
+    pinHandle.addEventListener('mouseup', onMouseUp);
 })();
