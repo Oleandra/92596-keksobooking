@@ -1,5 +1,4 @@
 'use strict';
-
 // синхронизация полей формы
   window.synchronizeFields = function (syncDomElem, syncDomElem2, arrValueSync, arrValueSync2, cb) {
     syncDomElem.addEventListener('change', function () {
