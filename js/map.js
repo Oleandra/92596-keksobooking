@@ -69,8 +69,8 @@ window.manipulatePin = (function () {
     var pinWidth = 44;
     var pinHeigth = 40;
     return {
-    x: pin.offsetLeft + pinWidth / 2,
-    y: pin.offsetTop + pinHeigth - 4
+      x: pin.offsetLeft + pinWidth / 2,
+      y: pin.offsetTop + pinHeigth - 4
     };
   };
 
