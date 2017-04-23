@@ -61,17 +61,17 @@ window.manipulatePin = (function () {
   });
 
   // draggable elements
-var pinHandle = document.querySelector('.pin__main');
-var address = document.querySelector('#address');
+    var pinHandle = document.querySelector('.pin__main');
+    var address = document.querySelector('#address');
 
 
-var getPinCoords = function (pin) {
+    var getPinCoords = function (pin) {
     var pinWidth = 44;
     var pinHeigth = 40;
     return {
-            x: pin.offsetLeft + pinWidth / 2,
-            y: pin.offsetTop + pinHeigth - 4
-            };
+        x: pin.offsetLeft + pinWidth / 2,
+        y: pin.offsetTop + pinHeigth - 4
+        };
     };
 
 pinHandle.addEventListener('mousedown', function (evt) {
