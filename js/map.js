@@ -65,7 +65,7 @@ window.manipulatePin = (function () {
     var address = document.querySelector('#address');
 
 
-    var getPinCoords = function (pin) {
+var getPinCoords = function (pin) {
     var pinWidth = 44;
     var pinHeigth = 40;
     return {
