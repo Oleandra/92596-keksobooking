@@ -1,30 +1,27 @@
 'use strict';
-// делаем запрос к серверу
-window.load = (function () {
-  var errorHandler = function (err) {
-    return err;
-  };
 
-  return function (url, onLoad, onError) {
-    var xhr = new XMLHttpRequest();
+window.load = function (url, onLoad, onError) {
+  var xhr = new XMLHttpRequest();
+  xhr.responseType = 'json';
 
-    if (typeof onError === 'function') {
-      errorHandler = onError;
+  xhr.addEventListener('load', function () {
+    if (xhr.status === 200) {
+      onLoad(xhr.response);
+    } else {
+      onError('Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText);
     }
+  });
 
-    xhr.addEventListener('load', function (evt) {
-      if (evt.target.status >= 400) {
-        errorHandler('Failed to load data. Server returned status: ' + evt.target.status);
-      } else if (evt.target.status >= 200) {
-        onLoad(evt.target.response);
-      }
-    });
-    xhr.addEventListener('error', errorHandler);
-    xhr.addEventListener('timeout', errorHandler);
+  xhr.addEventListener('error', function () {
+    onError('Произошла ошибка соединения');
+  });
 
-    xhr.responseType = 'json';
+  xhr.addEventListener('timeout', function () {
+    onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+  });
 
-    xhr.open('GET', url);
-    xhr.send();
-  };
-})();
+  xhr.timeout = 10000; // 10s
+
+  xhr.open('GET', url);
+  xhr.send();
+};

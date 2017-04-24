@@ -1,11 +1,11 @@
 'use strict';
 
-window.initilizePin = (function () {
+window.initilizePin = function (users) {
   var fragment = document.createDocumentFragment();
 
-  for (var j = 0; j < window.createData.user.length; j++) {
+  for (var j = 0; j < users.length; j++) {
     var similarNotice = document.createElement('div');
-    var notice = window.createData.user[j];
+    var notice = users[j];
     similarNotice.className = 'pin';
     similarNotice.dataset.index = j;
     similarNotice.tabindex = 0;
@@ -23,4 +23,4 @@ window.initilizePin = (function () {
   }
 
   document.querySelector('.tokyo__pin-map').appendChild(fragment);
-})();
+};
