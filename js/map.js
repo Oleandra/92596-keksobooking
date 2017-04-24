@@ -4,14 +4,9 @@ window.manipulatePin = (function () {
 
   var URL = 'https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/data';
 
-
-
-
-
-  var init = function(users){
+  var init = function (users) {
 
     window.showCard.populateDialog(users[0]);
-
 
     var dialog = document.querySelector('.dialog');
     var dialogClose = document.querySelector('.dialog__close');
@@ -69,63 +64,63 @@ window.manipulatePin = (function () {
     });
   }
 
-var getPinDraggable = function(){
+  var getPinDraggable = function () {
 
-  var mainPin = document.querySelector('.pin__main');
-  var address = document.querySelector('#address');
+    var mainPin = document.querySelector('.pin__main');
+    var address = document.querySelector('#address');
 
-  address.readOnly = true;
-  
-  function getAddress(x, y) {
-    address.value = 'x: ' + (x + 74 / 2) + ', y: ' + (y + 94);
-  }
+    address.readOnly = true;
 
-  mainPin.addEventListener('mousedown', function (evt) {
-    evt.preventDefault();
-    var startXY = {
-      x: evt.clientX,
-      y: evt.clientY
+    function getAddress (x, y) {
+      address.value = 'x: ' + (x + 74 / 2) + ', y: ' + (y + 94);
     }
 
-    function onMouseMove(moveEvt) {
-      moveEvt.preventDefault();
-      
-      var shift = {
-        x: startXY.x - moveEvt.clientX,
-        y: startXY.y - moveEvt.clientY
+    mainPin.addEventListener('mousedown', function (evt) {
+      evt.preventDefault();
+      var startXY = {
+        x: evt.clientX,
+        y: evt.clientY
       };
 
-      startXY = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
+      function onMouseMove (moveEvt) {
+        moveEvt.preventDefault();
+
+        var shift = {
+          x: startXY.x - moveEvt.clientX,
+          y: startXY.y - moveEvt.clientY
+        };
+
+        startXY = {
+          x: moveEvt.clientX,
+          y: moveEvt.clientY
+        }
+        mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
+        mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
+        getAddress(mainPin.offsetLeft, mainPin.offsetTop);
       }
-      mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
-      mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
-      getAddress(mainPin.offsetLeft, mainPin.offsetTop);
-    }
 
-    function onMouseUp(upEvt) {
-      upEvt.preventDefault();
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    }
+      function onMouseUp (upEvt) {
+        upEvt.preventDefault();
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+      }
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-  });
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    });
 
-  getAddress(mainPin.offsetLeft, mainPin.offsetTop);
+    getAddress(mainPin.offsetLeft, mainPin.offsetTop);
 
-}
+  }
   // server request
   
-  var onload = function(users){
-      window.initilizePin(users);
-      getPinDraggable();
-      init(users);
+  var onload = function (users) {
+    window.initilizePin(users);
+    getPinDraggable();
+    init(users);
 
   };
-  var onerror = function(errorMessage){
+  var onerror = function (errorMessage) {
     var node = document.createElement('div');
     node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: blue;';
     node.style.position = 'absolute';
