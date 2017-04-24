@@ -62,7 +62,7 @@ window.manipulatePin = (function () {
         pinOnClick(content);
       });
     });
-  }
+  };
 
   var getPinDraggable = function () {
 
@@ -71,7 +71,7 @@ window.manipulatePin = (function () {
 
     address.readOnly = true;
 
-    function getAddress (x, y) {
+    function getAddress(x, y) {
       address.value = 'x: ' + (x + 74 / 2) + ', y: ' + (y + 94);
     }
 
@@ -82,7 +82,7 @@ window.manipulatePin = (function () {
         y: evt.clientY
       };
 
-      function onMouseMove (moveEvt) {
+      function onMouseMove(moveEvt) {
         moveEvt.preventDefault();
 
         var shift = {
@@ -93,13 +93,13 @@ window.manipulatePin = (function () {
         startXY = {
           x: moveEvt.clientX,
           y: moveEvt.clientY
-        }
+        };
         mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
         mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
         getAddress(mainPin.offsetLeft, mainPin.offsetTop);
       }
 
-      function onMouseUp (upEvt) {
+      function onMouseUp(upEvt) {
         upEvt.preventDefault();
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
@@ -111,9 +111,9 @@ window.manipulatePin = (function () {
 
     getAddress(mainPin.offsetLeft, mainPin.offsetTop);
 
-  }
+  };
   // server request
-  
+
   var onload = function (users) {
     window.initilizePin(users);
     getPinDraggable();
@@ -127,8 +127,8 @@ window.manipulatePin = (function () {
     node.style.left = 0;
     node.style.right = 0;
     node.style.fontSize = '24px';
-    
-    node.textContent = errorMessage; 
+
+    node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
