@@ -1,6 +1,7 @@
 'use strict';
 
 window.showCard = (function () {
+  var _callback =null;
   var similarLodgeTemplate = document.querySelector('#lodge-template').content;
 
   var populateDialog = function (user) {

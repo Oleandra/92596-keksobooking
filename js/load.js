@@ -1,30 +1,31 @@
 'use strict';
-// делаем запрос к серверу
-window.load = (function () {
-  var errorHandler = function (err) {
-    return err;
-  };
 
-  return function (url, onLoad, onError) {
+window.load = function (url, onLoad, onError) {
+    // var statusBox = document.querySelector('.status-box');
+    // var statusMessage = statusBlock.querySelector('.status-message');
+
     var xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
 
-    if (typeof onError === 'function') {
-      errorHandler = onError;
-    }
-
-    xhr.addEventListener('load', function (evt) {
-      if (evt.target.status >= 400) {
-        errorHandler('Failed to load data. Server returned status: ' + evt.target.status);
-      } else if (evt.target.status >= 200) {
-        onLoad(evt.target.response);
+    xhr.addEventListener('load', function () {
+      if (xhr.status === 200)  {
+        onLoad(xhr.response);
+        // statusBox.style = none;
+    } else {
+      onError('Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText);
       }
     });
-    xhr.addEventListener('error', errorHandler);
-    xhr.addEventListener('timeout', errorHandler);
 
-    xhr.responseType = 'json';
+    xhr.addEventListener('error', function () {
+      onError('Произошла ошибка соединения');
+    });
+
+    xhr.addEventListener('timeout', function () {
+      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+    });
+
+    xhr.timeout = 10000; // 10s
 
     xhr.open('GET', url);
     xhr.send();
-  };
-})();
+}
