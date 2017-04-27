@@ -21,7 +21,7 @@ window.manipulatePin = (function () {
     };
     
 
-    if(users.length > 0){
+    if(users.length > 0) {
       window.showCard.populateDialog(users[0]);
     }
     else {

@@ -2,8 +2,7 @@
 
 window.filters =(function () {
   
-function containsAll(source,target)
-{   
+function containsAll(source,target) {   
     var result = source.filter(function(item){ return target.indexOf(item) > -1});   
     return (result.length == target.length);  
 }  
@@ -29,17 +28,17 @@ var filterGuests = function (user, filters){
 };
   
 
-var filterHousingPrice = function(user, filters){
+var filterHousingPrice = function(user, filters) {
  var min, max =0;
     if (filters.housingPrice == 'low')
     {
         min = 0;
         max = 10000;
-    }else if (filters.housingPrice == 'middle'){
+    }else if (filters.housingPrice == 'middle') {
       min = 10000;
       max = 50000;
     }
-    else if (filters.housingPrice == 'high'){
+    else if (filters.housingPrice == 'high') {
       min = 50000;
       max = Number.MAX_VALUE;
     }

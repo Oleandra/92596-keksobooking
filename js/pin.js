@@ -30,7 +30,7 @@ window.initilizePins = function (users, afterInitFn) {
   {
       onSingleFilterChange('housingPrice', evt.target.value);
   });
-  document.querySelectorAll('input[name="feature"]').forEach(function(checkbox){
+  document.querySelectorAll('input[name="feature"]').forEach(function(checkbox) {
     checkbox.addEventListener('change', function(evt){          
           if(evt.target.checked === false){
             filters.features = filters.features.filter(function(el){return el != evt.target.value}) ;

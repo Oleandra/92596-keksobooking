@@ -35,8 +35,8 @@ window.showCard = (function () {
     user.offer.photos.forEach(function (item) {
       var img =  document.createElement('img');
       img.src = item;
-      img.width = 52;
-      img.height = 52;
+      img.width = 50;
+      img.height = 50;
       lodgePhotos.appendChild(img);
     });
     document.querySelector('.dialog__panel').replaceWith(lodgeElement);
