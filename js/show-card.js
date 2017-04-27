@@ -27,7 +27,18 @@ window.showCard = (function () {
       featureElement.classList.add('feature__image--' + item);
       offerFeaturesElement.appendChild(featureElement);
     });
+
     lodgeElement.querySelector('.lodge__description').textContent = user.offer.description;
+
+    var lodgePhotos = lodgeElement.querySelector('.lodge__photos')
+    
+    user.offer.photos.forEach(function (item) {
+      var img =  document.createElement('img');
+      img.src = item;
+      img.width = 52;
+      img.height = 52;
+      lodgePhotos.appendChild(img);
+    });
     document.querySelector('.dialog__panel').replaceWith(lodgeElement);
     document.querySelector('#offer-dialog .dialog__title img').src = user.author.avatar;
 
