@@ -29,7 +29,7 @@ window.initializeForm = (function () {
   });
 
   formTitle.required = true;
-  formTitle.minLength = 50;
+  formTitle.minLength = 30;
   formTitle.maxLength = 100;
 
   formPrice.required = true;
