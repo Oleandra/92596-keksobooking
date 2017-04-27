@@ -8,7 +8,7 @@ window.manipulatePin = (function () {
     var dialog = document.querySelector('.dialog');
     var dialogClose = document.querySelector('.dialog__close');
     var pinElements = document.querySelectorAll('.pin');
-    
+
     var removeActiveClass = function () {
       document.querySelectorAll('.pin').forEach(function (content, item) {
         content.classList.remove('pin--active');
@@ -19,13 +19,12 @@ window.manipulatePin = (function () {
       removeActiveClass();
       dialog.classList.add('hidden');
     };
-    
-    if(users.length > 0) {
+
+    if (users.length > 0) {
       window.showCard.populateDialog(users[0]);
-    }
-    else {
+    } else {
       closeDialog();
-    }    
+    }
 
     var pinOnClick = function (content) {
       removeActiveClass();
@@ -67,10 +66,8 @@ window.manipulatePin = (function () {
     });
   };
 
-  
   // server request
 
- 
   var onload = function (users) {
     window.initilizePins(users, init);
     window.getPinDraggable();
