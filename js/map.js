@@ -20,7 +20,6 @@ window.manipulatePin = (function () {
       dialog.classList.add('hidden');
     };
     
-
     if(users.length > 0) {
       window.showCard.populateDialog(users[0]);
     }
