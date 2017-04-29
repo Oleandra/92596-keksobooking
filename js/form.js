@@ -18,8 +18,9 @@ window.initializeForm = (function () {
   window.synchronizeFields(formTimeout, formTime, ['12', '13', '14'], ['12', '13', '14'], function (val) {
     formTime.value = val;
   });
-  window.synchronizeFields(formType, formPrice, ['1000', '0', '10000'], ['1000', '0', '10000'], function (val) {
-    formPrice.min = val;
+  window.synchronizeFields(formType, formPrice, ['Квартира', 'Лачуга', 'Дворец'], ['1000', '0', '10000'], function (val) {
+    formPrice.value = val;
+    formPrice.setAttribute('min', val);
   });
   window.synchronizeFields(formRoomNumber, formCapacity, ['1', '2', '100'], ['0', '3', '3'], function (val) {
     formCapacity.value = val;
@@ -34,8 +35,8 @@ window.initializeForm = (function () {
 
   formPrice.required = true;
   formPrice.type = 'number';
-  // formPrice.min = 1000;
   formPrice.max = 1000000;
+
   formAddress.required = true;
 
 })();
