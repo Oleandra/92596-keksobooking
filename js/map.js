@@ -22,12 +22,10 @@ window.manipulatePin = (function () {
 
     var onPinClick = function (content) {
       removeActiveClass();
-
       dialog.classList.remove('hidden');
       content.classList.add('pin--active');
 
       var currentUserIndex = content.dataset.index;
-
       if (currentUserIndex) {
         window.showCard.populateDialog(users[currentUserIndex]);
 
